@@ -15,9 +15,8 @@ try:
     score = round(float(score),8)
     result = df[df.score==score].iloc[0]
     st.write("*************")
-    st.write(f"你预测了{result['pred_num']}个异常用户")
-    st.write(f"其中预测对了{result['pred_true_num']}个用户")
-    st.write(f"其中预测错了{result['pred_num']-result['pred_true_num']}个用户")
+    st.write(f"你预测了{int(result['pred_num'])}个异常用户")
+    st.write(f"预测对了{int(result['pred_true_num'])}个用户，预测错了{result['pred_num']-result['pred_true_num']}个用户")
     dif = 144-int(result['pred_true_num'])
     if dif != 0:
         st.write(f"总共有144个异常用户，还差{dif}个异常用户没找到")
