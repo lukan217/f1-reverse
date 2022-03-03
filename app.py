@@ -1,12 +1,15 @@
 import streamlit as st
 import pandas as pd
 
-df = pd.read_csv("df.csv")
-df['score'] = df['score'].round(8)
+@st.cache
+def load_data():
+    df = pd.read_csv("df.csv")
+    df['score'] = df['score'].round(8)
+    return df
+df = load_data()
 st.title("f1分数解析")
 st.write("能源大数据子赛道——污染源超限排放研判")
 st.write("比赛地址: https://www.dcic-china.com/competitions/10024")
-
 score = st.text_input('输入排行榜得分', '0.66484404126')
 try:
     score = round(float(score),8)
